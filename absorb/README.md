@@ -54,5 +54,3 @@ location:
 
 Place this script below Materials, but above Main. Place this script below
 the SES Core.
-
-++
