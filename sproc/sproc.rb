@@ -68,6 +68,15 @@ class SProc
     @proc = create_proc(@code = value)
   end
   
+  # Refreshes the underlying `Proc` object in case changes have been made to
+  # the `@code` string without the use of the custom {#code=} writer (by
+  # making changes via methods on the reader method, for example).
+  # 
+  # @return [Proc] the new underlying `Proc`
+  def refresh
+    @proc = create_proc(@code)
+  end
+  
   # Calls the underlying `Proc` object with the given arguments.
   # 
   # @param args [Array<Object>] the argument to pass to the `Proc`
