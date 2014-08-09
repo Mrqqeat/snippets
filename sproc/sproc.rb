@@ -21,7 +21,7 @@
 # method available in RPG Maker for reading from encrypted archives).
 # 
 #     File.open('Example.rvdata2', 'wb') { |f| f << Marshal.dump(sproc) }
-#     sproc = File.open('Example.rvdata2', rb) { |f| Marshal.load(f) }
+#     sproc = File.open('Example.rvdata2', 'rb') { |f| Marshal.load(f) }
 # 
 #   An `SProc` can be used in exactly the same way as a normal `Proc`, even
 # making use of `to_proc` conversion via the `&` unary operator like so:
