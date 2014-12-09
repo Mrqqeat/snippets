@@ -1,5 +1,5 @@
 
-SProc v1.0 by Solistra
+SProc v1.1 by Solistra
 =============================================================================
 
 Summary
@@ -14,7 +14,7 @@ Usage
 one major difference: the code passed to it is in the form of a string rather
 than a block. As such, creating one looks somewhat different:
 
-    sproc = SProc.new %Q{ |i| i ** 2 }
+    sproc = SES::SProc.new(%Q{ |i| i ** 2 })
 
   Once created, an `SProc` may be safely serialized to disk and reconstructed
 later via `Marshal.dump` and `Marshal.load` (or the special `load_data`
@@ -26,7 +26,7 @@ method available in RPG Maker for reading from encrypted archives).
   An `SProc` can be used in exactly the same way as a normal `Proc`, even
 making use of `to_proc` conversion via the `&` unary operator like so:
 
-    sproc = SProc.new %Q{ |i| (i % 3).zero? }
+    sproc = SES::SProc.new(%Q{ |i| (i % 3).zero? })
     (1..10).to_a.select(&sproc) # => [3, 6, 9]
 
 License
