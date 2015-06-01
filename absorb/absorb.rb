@@ -1,5 +1,5 @@
 #--
-# Absorb Elements v1.0 by Enelvon
+# Absorb Elements v1.1 by Enelvon
 # =============================================================================
 # 
 # Summary
@@ -13,7 +13,8 @@
 #   SES Core v2.2 or higher.
 # 
 # **Known Incompatibilities:**
-#   None, and as nothing is overwritten, there should never be any.
+#   None, and as nothing is overwritten (unless you use DrainOverMax), there
+# should never be any.
 # 
 # Usage
 # -----------------------------------------------------------------------------
@@ -37,6 +38,11 @@
 # -----------------------------------------------------------------------------
 # * `class Game_BattlerBase`
 #     - `element_rate`
+#
+# Overwritten Methods (if you use DrainOverMax)
+# -----------------------------------------------------------------------------
+# * `class Game_Battler`
+#     - `elements_max_rate`
 # 
 # License
 # -----------------------------------------------------------------------------
@@ -59,6 +65,9 @@
 module SES module Absorb
   # Name of the feature used to determine what elements will be absorbed
   FeatureID = :SESAbsorb
+  
+  # Whether or not absorbtion should take precedence over other element rates.
+  DrainOverMax = true
 end
 
 class RPG::BaseItem
@@ -95,5 +104,21 @@ class Game_BattlerBase
   def element_rate(element_id)
     return -1 if features_with_id(FEATURE_ELEMENT_ABSORB, element_id).size > 0
     return en_absorb_gbb_er(element_id)
+  end
+end
+
+if SES::Absorb::DrainOverMax
+  # Base class for Game_Actor and Game_Enemy in RPG Maker VX Ace.
+  class Game_Battler < Game_BattlerBase
+  
+    # Determines the maximum element rate for a set of elements, or if it should
+    # be drained.
+    #
+    # @param elements [Array<Integer>] an array of element IDs
+    # @return [Float] the maximum element rate (or drain)
+    def elements_max_rate(elements)
+      rates = elements.inject([]) {|r, i| r.push(element_rate(i)) }
+      rates.include?(-1) ? -1 : rates.max
+    end
   end
 end
