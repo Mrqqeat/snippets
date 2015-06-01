@@ -1,4 +1,4 @@
-Absorb Elements v1.0 by Enelvon
+Absorb Elements v1.1 by Enelvon
 =============================================================================
 
 Summary
