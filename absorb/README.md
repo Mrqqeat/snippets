@@ -1,25 +1,25 @@
---
 Absorb Elements v1.0 by Enelvon
 =============================================================================
 
 Summary
 -----------------------------------------------------------------------------
- This script is a simple, minimally invasive snippet that allows elements to
+  This script is a simple, minimally invasive snippet that allows elements to
 be absorbed. This is accomplished via Notes tags placed in Database objects.
- 
+
 Compatibility Information
 -----------------------------------------------------------------------------
 **Required Scripts:**
   SES Core v2.2 or higher.
 
 **Known Incompatibilities:**
-  None, and as nothing is overwritten, there should never be any.
+  None, and as nothing is overwritten (unless you use DrainOverMax), there
+should never be any.
 
 Usage
 -----------------------------------------------------------------------------
   This script uses a single Notes tag to accomplish its task.
 
-### Object Note Tags:
+Object Note Tags:
 
 `<Absorb: !Ele!(, !Ele!, !Ele!, ...)>`
 
@@ -37,6 +37,11 @@ Aliased Methods
 -----------------------------------------------------------------------------
 * `class Game_BattlerBase`
     - `element_rate`
+
+Overwritten Methods (if you use DrainOverMax)
+-----------------------------------------------------------------------------
+* `class Game_Battler`
+    - `elements_max_rate`
 
 License
 -----------------------------------------------------------------------------
