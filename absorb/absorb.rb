@@ -68,7 +68,7 @@ module SES module Absorb
   
   # Whether or not absorbtion should take precedence over other element rates.
   DrainOverMax = true
-end
+end end
 
 class RPG::BaseItem
   
