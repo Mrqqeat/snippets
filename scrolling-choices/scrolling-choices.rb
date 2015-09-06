@@ -54,7 +54,6 @@ class Window_ChoiceList < Window_Command
     else
       self.width = 96 + padding * 2
     end
-    if 
     self.width = Graphics.width if width > Graphics.width
     if SES::ExtendChoices::MAX_VISIBLE_CHOICES > $game_message.choices.size
       self.height = fitting_height($game_message.choices.size)
